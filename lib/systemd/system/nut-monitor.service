@@ -1,0 +1,13 @@
+[Unit]
+Description=Network UPS Tools - power device monitor and shutdown controller
+After=local-fs.target network.target nut-server.service
+
+[Service]
+ExecStart=/sbin/upsmon -F
+# Note: If you're installing this over v2.7.4, the -F and "simple"
+# options are needed for v2.8.0, or service won't start
+PIDFile=/run/nut/upsmon.pid
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
